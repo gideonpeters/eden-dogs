@@ -1,3 +1,3 @@
 <template>
-	<h1>Home View</h1>
+  <h1>Dog View</h1>
 </template>

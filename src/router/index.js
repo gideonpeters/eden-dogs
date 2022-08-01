@@ -1,23 +1,31 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import HomeView from "../views/HomeView.vue";
 
 Vue.use(VueRouter);
 
+const routeEndpoints = {
+  HOME: {
+    name: "home",
+    path: "/",
+  },
+  DOG_VIEW: {
+    name: "dogs.view",
+    path: "/dogs/:id",
+  },
+};
+
 const routes = [
   {
-    path: "/",
-    name: "home",
-    component: HomeView,
+    path: routeEndpoints.HOME.path,
+    name: routeEndpoints.HOME.name,
+    component: () =>
+      import(/* webpackChunkName: "dogs" */ "../views/HomeView.vue"),
   },
   {
-    path: "/about",
-    name: "about",
-    // route level code-splitting
-    // this generates a separate chunk (about.[hash].js) for this route
-    // which is lazy-loaded when the route is visited.
+    path: routeEndpoints.DOG_VIEW.path,
+    name: routeEndpoints.DOG_VIEW.name,
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/AboutView.vue"),
+      import(/* webpackChunkName: "dogs" */ "../views/DogView.vue"),
   },
 ];
 
