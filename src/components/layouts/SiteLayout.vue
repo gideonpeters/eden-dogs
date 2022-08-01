@@ -1,5 +1,5 @@
 <template>
-	<div id="app" class="relative py-3 px-32 bg-green-10 flex flex-col min-h-screen h-full overflow-x-hidden">
+	<div id="app" class="relative py-3 px-32 bg-green-10 flex flex-col min-h-screen h-full overflow-x-hidden overflow-y-hidden">
 		<SiteHeader class="z-40" />
 
 		<slot />
