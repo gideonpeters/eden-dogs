@@ -1,32 +1,27 @@
 <template>
-  <div id="app">
-    <nav>
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </nav>
-    <router-view />
-  </div>
+	<div id="app" class="relative py-3 px-10 bg-green-30 flex flex-col min-h-screen h-full overflow-x-hidden">
+		<SiteHeader class="z-40" />
+
+		<router-view class="z-40" />
+
+		<svg class="absolute z-0 top-[-2rem] left-[-5rem] h-[30rem] w-[30rem] text-white">
+			<use href="@/assets/img/blob-1.svg#blob-1"></use>
+		</svg>
+		<svg class="absolute z-0 top-[-2rem] right-[-5rem] h-[30rem] w-[30rem] text-white">
+			<use href="@/assets/img/blob-3.svg#blob-3"></use>
+		</svg>
+		<svg class="absolute z-0 bottom-[-2rem] right-[-5rem] h-[30rem] w-[30rem] text-white">
+			<use href="@/assets/img/blob-2.svg#blob-2"></use>
+		</svg>
+	</div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
+<script>
+import SiteHeader from '@/components/SiteHeader.vue';
 
-nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
-</style>
+export default {
+	components: {
+		SiteHeader,
+	},
+};
+</script>
