@@ -14,7 +14,17 @@ module.exports = {
 				},
 				green: {
 					DEFAULT: '#03a84e',
+					10: '#ebfff5',
 					30: '#1EA75B',
+				},
+				purple: {
+					DEFAULT: '#A0B0FE',
+					30: '#e5e9fc',
+					40: '#367ffe',
+					50: '#3673FE',
+				},
+				orange: {
+					DEFAULT: '#FA9D02',
 				},
 			},
 		},
