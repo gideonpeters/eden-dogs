@@ -1,0 +1,69 @@
+
+  
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 400;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-Book.ttf');
+  }
+
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 400;
+    font-style: italic;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-Book-Italic.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 600;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-SemiBold.ttf');
+  }
+
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 600;
+    font-style: italic;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-SemiBold-Italic.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 700;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-Bold.ttf');
+  }
+
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 700;
+    font-style: italic;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-Bold-Italic.ttf');
+  }
+
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 800;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-ExtraBold.ttf');
+  }
+
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 800;
+    font-style: italic;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-ExtraBold-Italic.ttf');
+  }
+  
+  @font-face {
+    font-family: 'Cerebri Sans';
+    font-weight: 900;
+    font-display: swap;
+    src: url('~@/assets/fonts/CerebriSans-Heavy.ttf');
+  }
+  
