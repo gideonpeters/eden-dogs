@@ -52,7 +52,7 @@
 		<div v-else class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-5 place-items-center">
 			<div class="shadow rounded-md max-w-sm w-full mx-auto mb-3" v-for="i in 6" :key="i">
 				<div class="animate-pulse flex space-x-4">
-					<div class="rounded-lg bg-slate-700 h-[20rem] w-full"></div>
+					<div class="rounded-lg bg-gradient-to-r from-purple-30 to-purple h-[20rem] w-full"></div>
 				</div>
 			</div>
 		</div>

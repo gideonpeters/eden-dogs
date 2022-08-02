@@ -3,7 +3,7 @@
 		@click.native="goToView"
 		:alt="`A ${breed}`"
 		:source="image"
-		imgClass="h-[20rem] w-full bg-white object-cover bg-no-repeat bg-center bg-cover bg-gradient-to-r from-violet-500 to-fuchsia-500 cursor-pointer transition ease-in-out hover:scale-105 duration-300"
+		imgClass="h-[20rem] w-full bg-white object-cover bg-no-repeat bg-center bg-cover bg-gradient-to-r from-purple-30 to-purple cursor-pointer transition ease-in-out hover:scale-105 duration-300"
 	/>
 </template>
 
