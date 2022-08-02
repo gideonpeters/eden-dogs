@@ -28,5 +28,34 @@ export default new Vuex.Store({
 				//
 			}
 		},
+		async fetchBreeds() {
+			try {
+				const res = await DogService.fetchAllBreeds();
+
+				return res.message;
+			} catch (error) {
+				//
+			}
+		},
+		async fetchByBreed(_, payload) {
+			try {
+				console.log('store payload', payload);
+				const res = await DogService.fetchByBreed(payload);
+
+				return res.message;
+			} catch (error) {
+				//
+			}
+		},
+		async fetchBySubBreed(_, payload) {
+			try {
+				console.log('store payload', payload);
+				const res = await DogService.fetchBySubBreed(payload);
+
+				return res.message;
+			} catch (error) {
+				//
+			}
+		},
 	},
 });

@@ -1,3 +1,9 @@
 <template>
-	<h1>Dog View</h1>
+	<div class="mt-8"></div>
 </template>
+
+<script>
+export default {
+	components: {},
+};
+</script>
