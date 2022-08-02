@@ -127,11 +127,9 @@ export default {
 					subBreed: this.selectedSubBreed?.name,
 				});
 
-				console.log('umberrrr', res);
-
 				this.setDogs(res);
 			} catch (error) {
-				//
+				this.isLoading = false;
 			} finally {
 				this.isLoading = false;
 			}
