@@ -130,6 +130,8 @@ export default {
 					count: 3,
 				});
 
+				console.log(res);
+
 				this.images = res;
 			} catch (error) {
 				this.isLoading = false;
@@ -138,8 +140,18 @@ export default {
 			}
 		},
 		pageSetup() {
-			this.mainImage = this.$route.query?.img;
-			this.breed = this.$route.params?.breed;
+			const { img } = this.$route.query;
+			const { breed } = this.$route.params;
+
+			if (breed === 'random dog') {
+				// retrieves the breed from the api endpoint format
+				this.breed = img.split('/')[4];
+			} else {
+				this.breed = img;
+			}
+
+			this.mainImage = img;
+
 			this.fetchRandomBreeds();
 		},
 	},
