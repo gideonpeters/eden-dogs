@@ -17,7 +17,7 @@
 						@selected="breedSelected"
 					/>
 				</div>
-				<div class="w-full flex flex-col mx-5" v-if="selectedBreed.subBreeds.length > 0">
+				<div class="w-full flex flex-col md:mx-5 mx-0" v-if="selectedBreed.subBreeds.length > 0">
 					<label for="hero-email" class="sr-only">Enter Sub Breed</label>
 					<VueSuggestion
 						class="w-full"
