@@ -1,6 +1,6 @@
 <template>
 	<div>
-		<div class="mt-12 mb-5 flex items-center bg-purple-30 px-2 py-2 rounded-lg">
+		<div class="mt-12 mb-5 flex flex-col justify-center items-center bg-purple-30 px-2 py-2 rounded-lg">
 			<div class="sm:w-full w-full sm:flex sm:items-center">
 				<div class="w-full flex flex-col">
 					<label for="hero-email" class="sr-only">Enter Dog Breed</label>
@@ -36,7 +36,9 @@
 				</div>
 			</div>
 		</div>
-
+		<small v-if="!selectedBreed.name" class="text-gray-700">
+			If there are sub breeds for this breed, a second dropdown will be displayed
+		</small>
 		<SitePagination
 			:totalPages="totalPages"
 			:total="total"

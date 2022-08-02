@@ -1,5 +1,5 @@
 <template>
-	<div class="flex justify-end w-full">
+	<div class="flex justify-end w-full mt-5">
 		<ul class="pagination bg-white p-2 md:w-auto w-full flex items-center justify-between shadow-sm rounded">
 			<li class="pagination-item">
 				<span
