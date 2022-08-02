@@ -5,6 +5,7 @@
 				<div class="w-full flex flex-col">
 					<label for="hero-email" class="sr-only">Enter Dog Breed</label>
 					<VueSuggestion
+						ref="breedInput"
 						class="w-full"
 						:disabled="isLoading"
 						:inputOptions="{ placeholder: 'Enter Dog Breed to begin' }"
@@ -15,11 +16,13 @@
 						:itemTemplate="itemTemplate"
 						@changed="inputChange"
 						@selected="breedSelected"
+						@enter="handleBreedEnter"
 					/>
 				</div>
 				<div class="w-full flex flex-col md:mx-5 md:mt-0 mt-3 mx-0" v-if="selectedBreed.subBreeds.length > 0">
 					<label for="hero-email" class="sr-only">Enter Sub Breed</label>
 					<VueSuggestion
+						ref="subBreedInput"
 						class="w-full"
 						:disabled="isLoading"
 						:inputOptions="{ placeholder: 'Enter Dog Sub Breed' }"
@@ -29,10 +32,11 @@
 						:minLen="0"
 						:itemTemplate="itemTemplate"
 						@selected="subBreedSelected"
+						@enter="handleBreedEnter"
 					/>
 				</div>
 				<div class="mt-4 sm:mt-0 sm:ml-3">
-					<SiteButton text="Search" :isLoading="isLoading" @click="searchDogs" />
+					<SiteButton text="Search" :disabled="!selectedBreed.name" :isLoading="isLoading" @click="searchDogs" />
 				</div>
 			</div>
 		</div>
@@ -119,16 +123,39 @@ export default {
 		inputChange(text) {
 			this.filteredBreeds = this.breeds.filter((item) => item.name.includes(text.toLowerCase()));
 		},
+		handleBreedEnter() {
+			if (this.selectedBreed?.subBreeds?.length === 0) {
+				this.searchDogs();
+			} else {
+				this.$refs.subBreedInput.$el.focus();
+			}
+		},
 		async searchDogs() {
 			this.isLoading = true;
 			this.currentPage = 1;
 			try {
-				const res = await this.$store.dispatch(this.selectedSubBreed.name ? 'fetchBySubBreed' : 'fetchByBreed', {
-					breed: this.selectedBreed?.name,
-					subBreed: this.selectedSubBreed?.name,
-				});
+				// Checks if a subbreed was selected or not and fetches the appropriate value from cache
+				const cachedDogs =
+					JSON.parse(
+						localStorage.getItem(
+							this.selectedBreed?.subBreeds?.length === 0
+								? `ed-${this.selectedBreed.name}`
+								: `ed-${this.selectedSubBreed.name}`
+						)
+					) || [];
 
-				this.setDogs(res);
+				console.log('cache', cachedDogs);
+
+				if (cachedDogs?.length > 0) {
+					this.setDogs(cachedDogs);
+				} else {
+					const res = await this.$store.dispatch(this.selectedSubBreed.name ? 'fetchBySubBreed' : 'fetchByBreed', {
+						breed: this.selectedBreed?.name,
+						subBreed: this.selectedSubBreed?.name,
+					});
+
+					this.setDogs(res, true);
+				}
 			} catch (error) {
 				this.isLoading = false;
 			} finally {
@@ -139,8 +166,17 @@ export default {
 			this.page = page;
 			this.currentPage = page;
 		},
-		setDogs(dogs) {
+		setDogs(dogs, shouldCache = false) {
 			this.filteredDogs = dogs;
+
+			// Cache result
+			if (shouldCache) {
+				if (this.selectedBreed?.subBreeds?.length === 0) {
+					localStorage.setItem(`ed-${this.selectedBreed.name}`, JSON.stringify(dogs));
+				} else {
+					localStorage.setItem(`ed-${this.selectedSubBreed.name}`, JSON.stringify(dogs));
+				}
+			}
 		},
 		formatBreeds(breeds) {
 			return Object.keys(breeds).map((breed) => {
