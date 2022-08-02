@@ -8,7 +8,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchSubBreeds() {
@@ -17,7 +17,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchRandomDogs(count = 50) {
@@ -26,7 +26,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchByBreed(params) {
@@ -35,7 +35,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchBySubBreed(params) {
@@ -44,7 +44,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchBreedInfo(params) {
@@ -53,7 +53,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 	static async fetchRandomBreeds(params) {
@@ -62,7 +62,7 @@ export default class DogService {
 
 			return res.data;
 		} catch (error) {
-			//
+			return Promise.reject(error);
 		}
 	}
 }

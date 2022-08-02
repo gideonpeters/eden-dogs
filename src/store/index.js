@@ -28,7 +28,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 		async fetchBreeds({ state }) {
@@ -41,7 +41,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 		async fetchByBreed(_, payload) {
@@ -50,7 +50,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 		async fetchBySubBreed(_, payload) {
@@ -59,7 +59,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 		async fetchBreedInfo(_, payload) {
@@ -68,7 +68,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 		async fetchRandomBreeds(_, payload) {
@@ -77,7 +77,7 @@ export default new Vuex.Store({
 
 				return res.message;
 			} catch (error) {
-				//
+				return Promise.reject(error);
 			}
 		},
 	},
