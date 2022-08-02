@@ -1,15 +1,17 @@
 <template>
 	<div>
-		<svg @click="goHome" class="h-[5rem] w-[9rem] text-green cursor-pointer">
-			<use href="@/assets/img/logo.svg#logo"></use>
-		</svg>
+		<SiteLogo @click="goHome" />
 	</div>
 </template>
 
 <script>
 import { routeEndpoints } from '@/router';
+import SiteLogo from '@/components/SiteLogo.vue';
 
 export default {
+	components: {
+		SiteLogo,
+	},
 	methods: {
 		goHome() {
 			this.$router.push({ name: routeEndpoints.HOME.name });
