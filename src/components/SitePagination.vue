@@ -1,6 +1,6 @@
 <template>
-	<div class="flex justify-end">
-		<ul class="pagination bg-white p-2 shadow-sm rounded">
+	<div class="flex justify-end w-full">
+		<ul class="pagination bg-white p-2 md:w-auto w-full flex items-center justify-between shadow-sm rounded">
 			<li class="pagination-item">
 				<span
 					class="rounded-l rounded-sm border border-gray-100 px-3 py-2 cursor-not-allowed no-underline text-gray-600 h-10"
@@ -33,7 +33,7 @@
 				</button>
 			</li>
 
-			<li v-for="page in pages" class="pagination-item" :key="page.name">
+			<li v-for="page in pages" class="pagination-item pagination-item__number" :key="page.name">
 				<span
 					class="rounded-sm border border-blue-100 px-3 py-2 bg-blue-100 no-underline text-blue-500 cursor-not-allowed mx-2"
 					v-if="isPageActive(page.name)"
@@ -71,12 +71,6 @@
 			</li>
 
 			<li class="pagination-item">
-				<!-- <button
-					type="button"
-					@click="onClickLastPage"
-					:disabled="isInLastPage"
-					aria-label="Go to last page"
-				>Last</button> -->
 				<a
 					class="rounded-r rounded-sm border border-gray-100 px-3 py-2 hover:bg-gray-100 text-gray-600 no-underline"
 					href="#"
@@ -197,7 +191,10 @@ export default {
 	list-style-type: none;
 
 	.pagination-item {
-		display: inline-block;
+		@apply md:inline-block;
+		&__number {
+			@apply md:inline-block hidden;
+		}
 	}
 
 	.active {
