@@ -1,7 +1,7 @@
 <template>
 	<div id="app" class="relative pt-3 bg-green-10 flex flex-col min-h-screen h-full overflow-x-hidden overflow-y-hidden">
 		<SiteHeader class="z-40 lg:px-32 px-5" />
-		<div class="lg:px-32 px-5 flex flex-col pb-16">
+		<div class="lg:px-32 px-5 flex flex-col pb-16 min-h-[80vh]">
 			<slot />
 		</div>
 
