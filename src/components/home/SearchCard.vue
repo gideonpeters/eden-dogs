@@ -155,7 +155,7 @@ export default {
 			// Fetch again because Dog API has a max of 50 and we need to display 100
 			const next50Dogs = await this.$store.dispatch('fetchRandomDogs');
 
-			const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds')) || [];
+			const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds'));
 
 			if (cachedBreeds.length === 0) {
 				// Fetch options for breeds[]
@@ -167,6 +167,8 @@ export default {
 				this.filteredBreeds = formattedBreeds;
 
 				this.$store.commit('SET_BREEDS', formattedBreeds);
+			} else {
+				this.$store.commit('SET_BREEDS', cachedBreeds);
 			}
 
 			this.$store.commit('SET_DOGS', [...dogs, ...next50Dogs]);
