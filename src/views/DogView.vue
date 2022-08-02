@@ -30,7 +30,7 @@
 						</div>
 					</div>
 					<div class="hidden lg:grid lg:grid-cols-1 lg:gap-y-8">
-						<div class="aspect-w-3 aspect-h-2 h-[10rem] rounded-lg overflow-hidden">
+						<div v-if="images[0]" class="aspect-w-3 aspect-h-2 h-[10rem] rounded-lg overflow-hidden">
 							<SiteImage
 								v-if="!isLoading"
 								:alt="`A ${breed}`"
@@ -41,7 +41,7 @@
 								<div class="bg-slate-700 rounded w-full h-full"></div>
 							</div>
 						</div>
-						<div class="aspect-w-3 aspect-h-2 h-[10rem] rounded-lg overflow-hidden">
+						<div v-if="images[1]" class="aspect-w-3 aspect-h-2 h-[10rem] rounded-lg overflow-hidden">
 							<SiteImage
 								v-if="!isLoading"
 								:alt="`A ${breed}`"
@@ -53,7 +53,10 @@
 							</div>
 						</div>
 					</div>
-					<div class="aspect-w-4 aspect-h-5 h-[25rem] sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4 lg:flex">
+					<div
+						v-if="images[2]"
+						class="aspect-w-4 aspect-h-5 h-[25rem] sm:rounded-lg sm:overflow-hidden lg:aspect-w-3 lg:aspect-h-4 lg:flex"
+					>
 						<SiteImage
 							v-if="!isLoading"
 							:alt="`A ${breed}`"
