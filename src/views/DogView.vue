@@ -5,12 +5,18 @@
 		</div>
 		<div class="bg-white mt-4">
 			<div class="pt-6">
-				<div v-if="isLoading" class="animate-pulse flex space-x-4 sm:px-6">
+				<div
+					v-if="isLoading"
+					class="animate-pulse flex space-x-4 max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8"
+				>
 					<div class="flex-1 space-y-6 py-1">
 						<div class="h-2 bg-slate-700 rounded"></div>
 					</div>
 				</div>
-				<div v-else class="lg:col-span-2 lg:border-r lg:border-gray-200 sm:px-6">
+				<div
+					v-else
+					class="lg:col-span-2 lg:border-r lg:border-gray-200 max-w-2xl mx-auto px-4 sm:px-6 lg:max-w-7xl lg:px-8 lg:grid lg:grid-cols-3 lg:grid-rows-[auto,auto,1fr] lg:gap-x-8"
+				>
 					<h1 class="text-2xl capitalize font-extrabold tracking-tight text-gray-900 sm:text-3xl">
 						{{ breed }}
 					</h1>
@@ -23,7 +29,7 @@
 							v-if="!isLoading"
 							:alt="`A ${breed}`"
 							:source="mainImage"
-							imgClass="w-full h-full object-center object-cover"
+							imgClass="w-full h-full object-center object-cover transition ease-in-out hover:scale-[102%] duration-300"
 						/>
 						<div v-else class="animate-pulse flex w-full h-full">
 							<div class="bg-slate-700 rounded w-full h-full"></div>
@@ -35,7 +41,7 @@
 								v-if="!isLoading"
 								:alt="`A ${breed}`"
 								:source="images[0]"
-								imgClass="w-full h-full object-center object-cover"
+								imgClass="w-full h-full object-center object-cover transition ease-in-out hover:scale-[102%] duration-300"
 							/>
 							<div v-else class="animate-pulse flex w-full h-full">
 								<div class="bg-slate-700 rounded w-full h-full"></div>
@@ -46,7 +52,7 @@
 								v-if="!isLoading"
 								:alt="`A ${breed}`"
 								:source="images[1]"
-								imgClass="w-full h-full object-center object-cover"
+								imgClass="w-full h-full object-center object-cover transition ease-in-out hover:scale-[102%] duration-300"
 							/>
 							<div v-else class="animate-pulse flex w-full h-full">
 								<div class="bg-slate-700 rounded w-full h-full"></div>
@@ -61,7 +67,7 @@
 							v-if="!isLoading"
 							:alt="`A ${breed}`"
 							:source="images[2]"
-							imgClass="w-full h-full object-center object-cover"
+							imgClass="w-full h-full object-center object-cover transition ease-in-out hover:scale-[102%] duration-300"
 						/>
 						<div v-else class="animate-pulse flex w-full h-full">
 							<div class="bg-slate-700 rounded w-full h-full"></div>
@@ -132,8 +138,6 @@ export default {
 					breed: this.breed,
 					count: 3,
 				});
-
-				console.log(res);
 
 				this.images = res;
 			} catch (error) {
