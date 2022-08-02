@@ -17,7 +17,7 @@
 						@selected="breedSelected"
 					/>
 				</div>
-				<div class="w-full flex flex-col md:mx-5 mx-0" v-if="selectedBreed.subBreeds.length > 0">
+				<div class="w-full flex flex-col md:mx-5 md:mt-0 mt-3 mx-0" v-if="selectedBreed.subBreeds.length > 0">
 					<label for="hero-email" class="sr-only">Enter Sub Breed</label>
 					<VueSuggestion
 						class="w-full"
@@ -115,8 +115,7 @@ export default {
 			return item.name;
 		},
 		inputChange(text) {
-			console.log('input', text);
-			this.filteredBreeds = this.breeds.filter((item) => item.name.includes(text));
+			this.filteredBreeds = this.breeds.filter((item) => item.name.includes(text.toLowerCase()));
 		},
 		async searchDogs() {
 			this.isLoading = true;
@@ -141,22 +140,36 @@ export default {
 		setDogs(dogs) {
 			this.filteredDogs = dogs;
 		},
-		async setupApp() {
-			this.isLoading = true;
-
-			const dogs = await this.$store.dispatch('fetchRandomDogs');
-			const breeds = await this.$store.dispatch('fetchBreeds');
-
-			const formattedBreeds = Object.keys(breeds).map((breed) => {
+		formatBreeds(breeds) {
+			return Object.keys(breeds).map((breed) => {
 				return {
 					name: breed,
 					subBreeds: breeds[breed].map((subBreed) => ({ name: subBreed })),
 				};
 			});
-			this.filteredBreeds = formattedBreeds;
+		},
+		async setupApp() {
+			this.isLoading = true;
 
-			this.$store.commit('SET_DOGS', dogs);
-			this.$store.commit('SET_BREEDS', formattedBreeds);
+			const dogs = await this.$store.dispatch('fetchRandomDogs');
+			// Fetch again because Dog API has a max of 50 and we need to display 100
+			const next50Dogs = await this.$store.dispatch('fetchRandomDogs');
+
+			const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds'));
+
+			if (cachedBreeds.length === 0) {
+				// Fetch options for breeds[]
+				const breeds = await this.$store.dispatch('fetchBreeds');
+
+				// Format breeds[] to appropriate model for VueSugesstion component
+				const formattedBreeds = this.formatBreeds(breeds);
+
+				this.filteredBreeds = formattedBreeds;
+
+				this.$store.commit('SET_BREEDS', formattedBreeds);
+			}
+
+			this.$store.commit('SET_DOGS', [...dogs, ...next50Dogs]);
 
 			this.setDogs(this.$store.state.dogs);
 			this.isLoading = false;

@@ -7,7 +7,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
 	state: {
 		dogs: [],
-		breeds: [],
+		breeds: JSON.parse(localStorage.getItem('ed-breeds') | null) || [],
 	},
 	getters: {},
 	mutations: {
@@ -16,6 +16,9 @@ export default new Vuex.Store({
 		},
 		SET_BREEDS(state, items) {
 			state.breeds = items;
+
+			// cache value in localStorage
+			localStorage.setItem('ed-breeds', JSON.stringify(items));
 		},
 	},
 	actions: {
@@ -28,8 +31,12 @@ export default new Vuex.Store({
 				//
 			}
 		},
-		async fetchBreeds() {
+		async fetchBreeds({ state }) {
 			try {
+				if (state.breeds.length > 0) {
+					return;
+				}
+
 				const res = await DogService.fetchAllBreeds();
 
 				return res.message;

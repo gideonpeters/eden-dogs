@@ -97,6 +97,7 @@ import SiteImage from '@/components/SiteImage.vue';
 import SiteButton from '@/components/SiteButton.vue';
 
 export default {
+	name: 'DogView',
 	components: { SiteImage, SiteButton },
 	data() {
 		return {
@@ -112,11 +113,9 @@ export default {
 		async fetchBreedInfo() {
 			this.isLoading = true;
 			try {
-				const res = await this.$store.dispatch('fetchBreedInfo', {
+				await this.$store.dispatch('fetchBreedInfo', {
 					breed: this.breed,
 				});
-
-				console.log(res);
 			} catch (error) {
 				this.isLoading = false;
 			} finally {
@@ -132,18 +131,20 @@ export default {
 				});
 
 				this.images = res;
-				console.log(res);
 			} catch (error) {
 				this.isLoading = false;
 			} finally {
 				this.isLoading = false;
 			}
 		},
+		pageSetup() {
+			this.mainImage = this.$route.query?.img;
+			this.breed = this.$route.params?.breed;
+			this.fetchRandomBreeds();
+		},
 	},
 	mounted() {
-		this.mainImage = this.$route.query?.img;
-		this.breed = this.$route.params?.breed;
-		this.fetchRandomBreeds();
+		this.pageSetup();
 	},
 };
 </script>
