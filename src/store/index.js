@@ -39,7 +39,6 @@ export default new Vuex.Store({
 		},
 		async fetchByBreed(_, payload) {
 			try {
-				console.log('store payload', payload);
 				const res = await DogService.fetchByBreed(payload);
 
 				return res.message;
@@ -49,8 +48,25 @@ export default new Vuex.Store({
 		},
 		async fetchBySubBreed(_, payload) {
 			try {
-				console.log('store payload', payload);
 				const res = await DogService.fetchBySubBreed(payload);
+
+				return res.message;
+			} catch (error) {
+				//
+			}
+		},
+		async fetchBreedInfo(_, payload) {
+			try {
+				const res = await DogService.fetchBreedInfo(payload);
+
+				return res.message;
+			} catch (error) {
+				//
+			}
+		},
+		async fetchRandomBreeds(_, payload) {
+			try {
+				const res = await DogService.fetchRandomBreeds(payload);
 
 				return res.message;
 			} catch (error) {

@@ -47,4 +47,22 @@ export default class DogService {
 			//
 		}
 	}
+	static async fetchBreedInfo(params) {
+		try {
+			const res = await http.get(ENDPOINTS.FETCH_BREED_INFO(params));
+
+			return res.data;
+		} catch (error) {
+			//
+		}
+	}
+	static async fetchRandomBreeds(params) {
+		try {
+			const res = await http.get(ENDPOINTS.LIST_RANDOM_BREEDS(params));
+
+			return res.data;
+		} catch (error) {
+			//
+		}
+	}
 }

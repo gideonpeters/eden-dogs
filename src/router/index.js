@@ -3,14 +3,14 @@ import VueRouter from 'vue-router';
 
 Vue.use(VueRouter);
 
-const routeEndpoints = {
+export const routeEndpoints = {
 	HOME: {
 		name: 'home',
 		path: '/',
 	},
 	DOG_VIEW: {
 		name: 'dogs.view',
-		path: '/dogs/:id',
+		path: '/dog/:breed',
 	},
 };
 
