@@ -150,31 +150,35 @@ export default {
 		},
 		async setupApp() {
 			this.isLoading = true;
+			try {
+				const dogs = await this.$store.dispatch('fetchRandomDogs');
+				// Fetch again because Dog API has a max of 50 and we need to display 100
+				const next50Dogs = await this.$store.dispatch('fetchRandomDogs');
 
-			const dogs = await this.$store.dispatch('fetchRandomDogs');
-			// Fetch again because Dog API has a max of 50 and we need to display 100
-			const next50Dogs = await this.$store.dispatch('fetchRandomDogs');
+				const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds') || null) || [];
 
-			const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds') || null) || [];
+				if (cachedBreeds?.length === 0) {
+					// Fetch options for breeds[]
+					const breeds = await this.$store.dispatch('fetchBreeds');
 
-			if (cachedBreeds?.length === 0) {
-				// Fetch options for breeds[]
-				const breeds = await this.$store.dispatch('fetchBreeds');
+					// Format breeds[] to appropriate model for VueSugesstion component
+					const formattedBreeds = this.formatBreeds(breeds);
 
-				// Format breeds[] to appropriate model for VueSugesstion component
-				const formattedBreeds = this.formatBreeds(breeds);
+					this.filteredBreeds = formattedBreeds;
 
-				this.filteredBreeds = formattedBreeds;
+					this.$store.commit('SET_BREEDS', formattedBreeds);
+				} else {
+					this.$store.commit('SET_BREEDS', cachedBreeds);
+				}
 
-				this.$store.commit('SET_BREEDS', formattedBreeds);
-			} else {
-				this.$store.commit('SET_BREEDS', cachedBreeds);
+				this.$store.commit('SET_DOGS', [...dogs, ...next50Dogs]);
+
+				this.setDogs(this.$store.state.dogs);
+			} catch (error) {
+				this.isLoading = false;
+			} finally {
+				this.isLoading = false;
 			}
-
-			this.$store.commit('SET_DOGS', [...dogs, ...next50Dogs]);
-
-			this.setDogs(this.$store.state.dogs);
-			this.isLoading = false;
 		},
 	},
 	mounted() {
