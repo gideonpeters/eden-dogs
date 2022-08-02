@@ -7,7 +7,7 @@
 					<VueSuggestion
 						class="w-full"
 						:disabled="isLoading"
-						:inputOptions="{ placeholder: 'Enter Dog Breed' }"
+						:inputOptions="{ placeholder: 'Enter Dog Breed to begin' }"
 						:items="filteredBreeds"
 						v-model="selectedBreed"
 						:setLabel="setLabel"
@@ -22,7 +22,7 @@
 					<VueSuggestion
 						class="w-full"
 						:disabled="isLoading"
-						:inputOptions="{ placeholder: 'Enter Dog Sub Breed to begin' }"
+						:inputOptions="{ placeholder: 'Enter Dog Sub Breed' }"
 						:items="selectedBreed.subBreeds"
 						v-model="selectedSubBreed"
 						:setLabel="setLabel"
