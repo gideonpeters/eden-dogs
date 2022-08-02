@@ -18,7 +18,7 @@
 				Search for your desired dog with us. Our website is guaranteed to help you find the pet you would absolutely love.
 			</p>
 		</div>
-		<div class="md:mt-12 mt-5 relative lg:flex lg:items-center w-full md:w-1/3">
+		<div class="md:mt-12 mt-5 relative lg:flex lg:items-center w-full md:w-1/3 md:motion-safe:animate-wiggle pr-8">
 			<div class="relative mx-auto w-full">
 				<div
 					class="relative block w-full rounded-lg shadow-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
@@ -27,7 +27,7 @@
 					<SiteImage
 						alt="Header random dog "
 						source="https://images.dog.ceo/breeds/hound-plott/hhh_plott002.JPG"
-						imgClass="w-[100%] object-cover object-top h-[25rem]"
+						imgClass="w-[100%] object-cover object-top h-[25rem] "
 					/>
 				</div>
 			</div>
