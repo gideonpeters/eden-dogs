@@ -157,7 +157,7 @@ export default {
 
 			const cachedBreeds = JSON.parse(localStorage.getItem('ed-breeds') || null);
 
-			if (cachedBreeds.length === 0) {
+			if (cachedBreeds?.length === 0) {
 				// Fetch options for breeds[]
 				const breeds = await this.$store.dispatch('fetchBreeds');
 
