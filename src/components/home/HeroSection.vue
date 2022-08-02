@@ -24,13 +24,21 @@
 					class="relative block w-full rounded-lg shadow-lg overflow-hidden focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
 				>
 					<span class="sr-only">Use the search input to find dog breeds</span>
-					<img
-						class="w-[100%] object-cover object-top h-[25rem]"
-						src="https://images.dog.ceo/breeds/hound-plott/hhh_plott002.JPG"
-						alt=""
+					<SiteImage
+						alt="Header random dog "
+						source="https://images.dog.ceo/breeds/hound-plott/hhh_plott002.JPG"
+						imgClass="w-[100%] object-cover object-top h-[25rem]"
 					/>
 				</div>
 			</div>
 		</div>
 	</div>
 </template>
+
+<script>
+import SiteImage from '@/components/SiteImage.vue';
+
+export default {
+	components: { SiteImage },
+};
+</script>

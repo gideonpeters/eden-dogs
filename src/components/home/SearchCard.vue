@@ -46,7 +46,14 @@
 			@pagechanged="showMore"
 		/>
 
-		<DogList :dogs="paginatedDogs" />
+		<DogList v-if="!isLoading" :dogs="paginatedDogs" :breed="selectedBreed.name" />
+		<div v-else class="grid grid-cols-1 md:grid-cols-4 gap-4 mt-5 place-items-center">
+			<div class="shadow rounded-md max-w-sm w-full mx-auto mb-3" v-for="i in 6" :key="i">
+				<div class="animate-pulse flex space-x-4">
+					<div class="rounded-lg bg-slate-700 h-[20rem] w-full"></div>
+				</div>
+			</div>
+		</div>
 	</div>
 </template>
 
@@ -135,28 +142,30 @@ export default {
 		},
 		setDogs(dogs) {
 			this.filteredDogs = dogs;
-			console.log('settt', this.filteredDogs);
+		},
+		async setupApp() {
+			this.isLoading = true;
+
+			const dogs = await this.$store.dispatch('fetchRandomDogs');
+			const breeds = await this.$store.dispatch('fetchBreeds');
+
+			const formattedBreeds = Object.keys(breeds).map((breed) => {
+				return {
+					name: breed,
+					subBreeds: breeds[breed].map((subBreed) => ({ name: subBreed })),
+				};
+			});
+			this.filteredBreeds = formattedBreeds;
+
+			this.$store.commit('SET_DOGS', dogs);
+			this.$store.commit('SET_BREEDS', formattedBreeds);
+
+			this.setDogs(this.$store.state.dogs);
+			this.isLoading = false;
 		},
 	},
-	async mounted() {
-		this.isLoading = true;
-		const dogs = await this.$store.dispatch('fetchRandomDogs');
-		const breeds = await this.$store.dispatch('fetchBreeds');
-		// console.log('breds', breeds);
-		const formattedBreeds = Object.keys(breeds).map((breed) => {
-			return {
-				name: breed,
-				subBreeds: breeds[breed].map((subBreed) => ({ name: subBreed })),
-			};
-		});
-		console.log('filttt', formattedBreeds);
-		this.filteredBreeds = formattedBreeds;
-
-		this.$store.commit('SET_DOGS', dogs);
-		this.$store.commit('SET_BREEDS', formattedBreeds);
-		// console.log('prrr', dogs);
-		this.setDogs(this.$store.state.dogs);
-		this.isLoading = false;
+	mounted() {
+		this.setupApp();
 	},
 };
 </script>
