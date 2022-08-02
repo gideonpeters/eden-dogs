@@ -1,6 +1,6 @@
 <template>
 	<SiteLayout>
-		<router-view class="z-40 overflow-y-scroll" />
+		<router-view class="z-20 overflow-y-scroll" />
 	</SiteLayout>
 </template>
 
