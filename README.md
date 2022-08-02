@@ -1,6 +1,7 @@
 # 🐾 Eden Dogs
 
 ✍🏾 Author: Gideon Peters
+
 This is EdenDogs, an SPA to search dogs by breed and view information about them. It is built with `Vue 2` and `TailwindCSS`.
 
 🧨 See demo [**Here**](https://eden-dogs.netlify.app/)
